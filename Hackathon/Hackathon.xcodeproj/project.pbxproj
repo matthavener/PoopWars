@@ -21,6 +21,11 @@
 		C90CE2B81465A9DE00824301 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C90CE2B71465A9DE00824301 /* MobileCoreServices.framework */; };
 		C90CE2BA1465A9F500824301 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C90CE2B91465A9F500824301 /* SystemConfiguration.framework */; };
 		C90CE2BC1465AD9F00824301 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C90CE2BB1465AD9F00824301 /* CoreLocation.framework */; };
+		C90CE2BF1465C48C00824301 /* PoopImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C90CE2BE1465C48C00824301 /* PoopImage.m */; };
+		C90CE2CE1465D23900824301 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = C90CE2CA1465D23900824301 /* CJSONDeserializer.m */; };
+		C90CE2CF1465D23900824301 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = C90CE2CC1465D23900824301 /* CDataScanner.m */; };
+		C90CE2D21465D27200824301 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = C90CE2D01465D27200824301 /* CJSONScanner.m */; };
+		C90CE2D51465D28000824301 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C90CE2D31465D28000824301 /* CDataScanner_Extensions.m */; };
 		C9C8626B146591B300957DC1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C8626A146591B300957DC1 /* UIKit.framework */; };
 		C9C8626D146591B300957DC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C8626C146591B300957DC1 /* Foundation.framework */; };
 		C9C8626F146591B300957DC1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C8626E146591B300957DC1 /* CoreGraphics.framework */; };
@@ -69,6 +74,16 @@
 		C90CE2B71465A9DE00824301 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C90CE2B91465A9F500824301 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C90CE2BB1465AD9F00824301 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C90CE2BD1465C48C00824301 /* PoopImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoopImage.h; sourceTree = "<group>"; };
+		C90CE2BE1465C48C00824301 /* PoopImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoopImage.m; sourceTree = "<group>"; };
+		C90CE2CA1465D23900824301 /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJSONDeserializer.m; path = ../../TouchJSON/Source/JSON/CJSONDeserializer.m; sourceTree = "<group>"; };
+		C90CE2CB1465D23900824301 /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJSONDeserializer.h; path = ../../TouchJSON/Source/JSON/CJSONDeserializer.h; sourceTree = "<group>"; };
+		C90CE2CC1465D23900824301 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDataScanner.m; path = ../../TouchJSON/Source/CDataScanner.m; sourceTree = "<group>"; };
+		C90CE2CD1465D23900824301 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDataScanner.h; path = ../../TouchJSON/Source/CDataScanner.h; sourceTree = "<group>"; };
+		C90CE2D01465D27200824301 /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJSONScanner.m; path = ../../TouchJSON/Source/JSON/CJSONScanner.m; sourceTree = "<group>"; };
+		C90CE2D11465D27200824301 /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJSONScanner.h; path = ../../TouchJSON/Source/JSON/CJSONScanner.h; sourceTree = "<group>"; };
+		C90CE2D31465D28000824301 /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDataScanner_Extensions.m; path = ../../TouchJSON/Source/Extensions/CDataScanner_Extensions.m; sourceTree = "<group>"; };
+		C90CE2D41465D28000824301 /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDataScanner_Extensions.h; path = ../../TouchJSON/Source/Extensions/CDataScanner_Extensions.h; sourceTree = "<group>"; };
 		C9C86266146591B300957DC1 /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C8626A146591B300957DC1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C9C8626C146591B300957DC1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -148,6 +163,21 @@
 			name = ASIHTTP;
 			sourceTree = "<group>";
 		};
+		C90CE2C01465CAF600824301 /* TouchJSON */ = {
+			isa = PBXGroup;
+			children = (
+				C90CE2D31465D28000824301 /* CDataScanner_Extensions.m */,
+				C90CE2D41465D28000824301 /* CDataScanner_Extensions.h */,
+				C90CE2D01465D27200824301 /* CJSONScanner.m */,
+				C90CE2D11465D27200824301 /* CJSONScanner.h */,
+				C90CE2CA1465D23900824301 /* CJSONDeserializer.m */,
+				C90CE2CB1465D23900824301 /* CJSONDeserializer.h */,
+				C90CE2CC1465D23900824301 /* CDataScanner.m */,
+				C90CE2CD1465D23900824301 /* CDataScanner.h */,
+			);
+			name = TouchJSON;
+			sourceTree = "<group>";
+		};
 		C9C8625B146591B300957DC1 = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +217,7 @@
 		C9C86270146591B300957DC1 /* Hackathon */ = {
 			isa = PBXGroup;
 			children = (
+				C90CE2C01465CAF600824301 /* TouchJSON */,
 				C90CE2911465A8B700824301 /* ASIHTTP */,
 				C9C86279146591B300957DC1 /* AppDelegate.h */,
 				C9C8627A146591B300957DC1 /* AppDelegate.m */,
@@ -201,6 +232,8 @@
 				C9C862A31465A60C00957DC1 /* WebInterface.m */,
 				C9C86289146591B300957DC1 /* second.png */,
 				C9C8628B146591B300957DC1 /* second@2x.png */,
+				C90CE2BD1465C48C00824301 /* PoopImage.h */,
+				C90CE2BE1465C48C00824301 /* PoopImage.m */,
 				C9C86271146591B300957DC1 /* Supporting Files */,
 			);
 			path = Hackathon;
@@ -297,6 +330,11 @@
 				C90CE2AC1465A91100824301 /* ASIDataCompressor.m in Sources */,
 				C90CE2AD1465A91100824301 /* ASIAuthenticationDialog.m in Sources */,
 				C90CE2B21465A94900824301 /* Reachability.m in Sources */,
+				C90CE2BF1465C48C00824301 /* PoopImage.m in Sources */,
+				C90CE2CE1465D23900824301 /* CJSONDeserializer.m in Sources */,
+				C90CE2CF1465D23900824301 /* CDataScanner.m in Sources */,
+				C90CE2D21465D27200824301 /* CJSONScanner.m in Sources */,
+				C90CE2D51465D28000824301 /* CDataScanner_Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

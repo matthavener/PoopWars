@@ -8,18 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "PoopImage.h"
 
 typedef void(^WebInterfaceGetCb)(NSArray *);
 typedef void(^WebInterfacePutCb)(NSString *);
-
-@interface PoopImages 
-@property (nonatomic, retain) UIImage *image;
-@property (nonatomic, assign) NSInteger rating;
-@property (nonatomic, retain) CLLocation *location;
-@end
 
 @interface WebInterface : NSObject<CLLocationManagerDelegate>
 
 - (void)uploadImage:(UIImage*)image withCallback:(WebInterfacePutCb)response;
 - (void)requestImagesWithResponse:(WebInterfaceGetCb)response;
+- (void)requestLocation;
+
+@property (nonatomic, retain) CLLocation *lastLocation;
+
 @end

@@ -9,18 +9,23 @@
 #import "WebInterface.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
+#import "CJSONDeserializer.h"
+
 
 @interface WebInterface() 
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) UIImage *pendingImage;
 @property (nonatomic, copy) WebInterfacePutCb pendingImageResponse;
 @property (nonatomic, retain) ASIFormDataRequest *pendingImageRequest;
+@property (nonatomic, retain) ASIHTTPRequest *getImagesRequest;
 @end
 
 @implementation WebInterface
 @synthesize locationManager = _locationManager, pendingImage = _pendingImage;
 @synthesize pendingImageResponse = _pendingImageResponse;
 @synthesize pendingImageRequest = _pendingImageRequest;
+@synthesize getImagesRequest = _getImagesRequest;
+@synthesize lastLocation = _lastLocation;
 
 - (void)dealloc
 {
@@ -28,6 +33,8 @@
     [_pendingImageResponse release];
     [_pendingImage release];
     [_locationManager release];
+    [_getImagesRequest release];
+    [_lastLocation release];
     [super dealloc];
 }
 
@@ -41,27 +48,20 @@
     return self;
 }
 
-- (void)uploadImage:(UIImage*)image withCallback:(WebInterfacePutCb)response;
+- (void)uploadPendingImage
 {
-    self.pendingImage = image;
-    self.pendingImageResponse = response;
-    [self.locationManager setDelegate:self];
-    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
-    [self.locationManager startUpdatingLocation];
-    
-}
-
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation
-{
-    [self.locationManager stopUpdatingLocation];
     if (!self.pendingImage)
         return;
     
+    if (!self.lastLocation)
+    {
+        [self requestLocation];
+        return;
+    }
+    
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://lkjasdlfkjasdf.com"]];
-    [request setPostValue:[NSString stringWithFormat:@"%f", newLocation.coordinate.latitude] forKey:@"lat"];
-    [request setPostValue:[NSString stringWithFormat:@"%f", newLocation.coordinate.longitude] forKey:@"long"];
+    [request setPostValue:[NSString stringWithFormat:@"%f", self.lastLocation.coordinate.latitude] forKey:@"lat"];
+    [request setPostValue:[NSString stringWithFormat:@"%f", self.lastLocation.coordinate.longitude] forKey:@"long"];
     [request setData:UIImageJPEGRepresentation(self.pendingImage, 1.0) 
         withFileName:@"poop.jpg" andContentType:@"image/jpeg" forKey:@"image"];
     [request setCompletionBlock:^{
@@ -76,6 +76,30 @@
     self.pendingImageRequest = request;
 }
 
+- (void)requestLocation
+{
+    [self.locationManager setDelegate:self];
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)uploadImage:(UIImage*)image withCallback:(WebInterfacePutCb)response;
+{
+    self.pendingImage = image;
+    self.pendingImageResponse = response;
+
+    [self uploadPendingImage];
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    self.lastLocation = newLocation;
+    [self.locationManager stopUpdatingLocation];
+    [self uploadPendingImage];
+}
+
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     NSLog(@"failed %@", error);
@@ -84,8 +108,51 @@
 
 - (void)requestImagesWithResponse:(WebInterfaceGetCb)response
 {
+#if 0
+    PoopImage *a = [[[PoopImage alloc] init] autorelease];
+    a.location = [[[CLLocation alloc] initWithLatitude:0.0 longitude:0.0] autorelease];
+    PoopImage *b = [[[PoopImage alloc] init] autorelease];
+    b.location = [[[CLLocation alloc] initWithLatitude:0.0 longitude:0.0] autorelease];
+    PoopImage *c = [[[PoopImage alloc] init] autorelease];
+    c.location = [[[CLLocation alloc] initWithLatitude:0.0 longitude:0.0] autorelease];
+    
+    NSArray *test = [NSArray arrayWithObjects:a, b, c, nil];
+    response(test);
+#else
+    
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:
+                               [NSURL URLWithString:@"http://www.lessucettes.com/hackathon/get_images.cgi"]];
+    [request setCompletionBlock:^{
+        NSError *error = nil;
+        NSDictionary *res = [[CJSONDeserializer deserializer] 
+                        deserializeAsDictionary:[request responseData] 
+                        error:&error];
+        NSArray *list = [res valueForKey:@"images"];
+        //NSLog(@"res %@ error %@ list %@", res, error, list);
+        NSMutableArray *entries = [NSMutableArray array];
+        for (NSDictionary *entry in list)
+        {
+            PoopImage *pi = [[PoopImage alloc] init];
+            pi.imageName = [entry valueForKey:@"imageName"];
+            NSNumber *lat = [entry valueForKey:@"lat"];
+            NSNumber *log = [entry valueForKey:@"long"];
+            pi.location = [[[CLLocation alloc] 
+                            initWithLatitude:[lat doubleValue] longitude:[log doubleValue]] 
+                           autorelease];
+            NSNumber *rating = [entry valueForKey:@"rating"];
+            pi.rating = [rating integerValue];
+            [entries addObject:pi];
+            [pi release];
+        }
+        response([NSArray arrayWithArray:entries]);
+    }];
+    [request setFailedBlock:^{
+        NSLog(@"failed to download");
+    }];
+    [request startAsynchronous];
+#endif
     
 }
-
 
 @end
