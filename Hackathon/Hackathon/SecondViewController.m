@@ -26,6 +26,31 @@
     [super dealloc];
 }
 
+- (void)doVote:(NSString*)type from:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    // so hacky
+    UITableViewCell* cell = (UITableViewCell*)[[button superview] superview];
+    NSIndexPath *path = [self.tableView indexPathForCell:cell];
+    int row = path.row;
+    PoopImage *pi = [self.poopImages objectAtIndex:row];
+    if (!pi)
+        return;
+    
+    WebInterface *webInterface = ((AppDelegate*)[UIApplication sharedApplication].delegate).webInterface;
+    [webInterface voteImage:pi with:type];
+}
+
+- (void)voteUp:(id)sender
+{
+    [self doVote:@"1" from:sender];
+}
+
+- (void)voteDown:(id)sender
+{
+    [self doVote:@"0" from:sender];
+}
+
 #pragma mark - UITableView 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -56,7 +81,7 @@
     UILabel *label = (UILabel*)[cell viewWithTag:1];
     if (webInterface.lastLocation) {
         CLLocationDistance d = [pi.location distanceFromLocation:webInterface.lastLocation];
-        label.text = [NSString stringWithFormat:@"distance %f rating %d", d, pi.rating];
+        label.text = [NSString stringWithFormat:@"distance %.2f / rating %d", d, pi.rating];
     } else {
         label.text = [NSString stringWithFormat:@"rating %d", pi.rating];
     }
@@ -66,7 +91,7 @@
         imageView.image = pi.image;
     } else {
         [pi requestImageOnCompletion:^{
-            [self.tableView reloadData];
+            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
         }];
         // TODO filler image
     }

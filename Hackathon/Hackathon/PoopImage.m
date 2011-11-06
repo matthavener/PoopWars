@@ -17,7 +17,7 @@
 @synthesize image = _image, location = _location, rating = _rating;
 @synthesize request = _request;
 @synthesize imageName = _imageName;
-
+@synthesize rowId = _rowId;
 
 - (void)dealloc
 {
@@ -30,11 +30,20 @@
 
 - (void)requestImageOnCompletion:(void (^)(void))cb
 {
+    NSString *imageUrl = [NSString stringWithFormat:@"http://www.lessucettes.com/hackathon/images/%@.jpg", self.imageName];
+    NSLog(@"getting %@", imageUrl);
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:
-                               [NSURL URLWithString:
-                                [NSString stringWithFormat:@"http://laksjdflaksdfj.com/%@", self.imageName]]];
+                               [NSURL URLWithString:imageUrl]];
+                                
     [request setCompletionBlock:^{
-        self.image = [UIImage imageWithData:[request responseData]];
+        UIImage *image = [UIImage imageWithData:[request responseData]];
+        if (!image)
+        {
+            NSLog(@"bad url %@", imageUrl);
+            return;
+        }
+        NSLog(@"image %@", image);
+        self.image = image;
         cb();
     }];
     [request startAsynchronous];

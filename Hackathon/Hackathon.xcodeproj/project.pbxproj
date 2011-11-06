@@ -26,6 +26,7 @@
 		C90CE2CF1465D23900824301 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = C90CE2CC1465D23900824301 /* CDataScanner.m */; };
 		C90CE2D21465D27200824301 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = C90CE2D01465D27200824301 /* CJSONScanner.m */; };
 		C90CE2D51465D28000824301 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C90CE2D31465D28000824301 /* CDataScanner_Extensions.m */; };
+		C90CE2D71465E95100824301 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C90CE2D61465E95100824301 /* Default@2x.png */; };
 		C9C8626B146591B300957DC1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C8626A146591B300957DC1 /* UIKit.framework */; };
 		C9C8626D146591B300957DC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C8626C146591B300957DC1 /* Foundation.framework */; };
 		C9C8626F146591B300957DC1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C8626E146591B300957DC1 /* CoreGraphics.framework */; };
@@ -84,6 +85,7 @@
 		C90CE2D11465D27200824301 /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJSONScanner.h; path = ../../TouchJSON/Source/JSON/CJSONScanner.h; sourceTree = "<group>"; };
 		C90CE2D31465D28000824301 /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDataScanner_Extensions.m; path = ../../TouchJSON/Source/Extensions/CDataScanner_Extensions.m; sourceTree = "<group>"; };
 		C90CE2D41465D28000824301 /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDataScanner_Extensions.h; path = ../../TouchJSON/Source/Extensions/CDataScanner_Extensions.h; sourceTree = "<group>"; };
+		C90CE2D61465E95100824301 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C9C86266146591B300957DC1 /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C8626A146591B300957DC1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C9C8626C146591B300957DC1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -181,6 +183,7 @@
 		C9C8625B146591B300957DC1 = {
 			isa = PBXGroup;
 			children = (
+				C90CE2D61465E95100824301 /* Default@2x.png */,
 				C90CE2BB1465AD9F00824301 /* CoreLocation.framework */,
 				C9C86270146591B300957DC1 /* Hackathon */,
 				C9C86269146591B300957DC1 /* Frameworks */,
@@ -306,6 +309,7 @@
 				C9C86285146591B300957DC1 /* first@2x.png in Resources */,
 				C9C8628A146591B300957DC1 /* second.png in Resources */,
 				C9C8628C146591B300957DC1 /* second@2x.png in Resources */,
+				C90CE2D71465E95100824301 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

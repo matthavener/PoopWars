@@ -12,4 +12,7 @@
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 
+- (IBAction)voteUp:(id)sender;
+- (IBAction)voteDown:(id)sender;
+
 @end

@@ -75,9 +75,14 @@
          
          //UIImageView *v = [[UIImageView alloc] initWithImage:orig];
          
+         [self.session stopRunning];
          WebInterface *webInterface = ((AppDelegate*)[UIApplication sharedApplication].delegate).webInterface;
          [webInterface uploadImage:orig withCallback:^(NSString *s) {
              NSLog(@"response was %@", s);
+             UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Poop dropped!" message:@"Kerplunk-Splash!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+             [av show];
+             [av release];
+             [self.session startRunning];
          }];
          
      }];
@@ -120,8 +125,8 @@
     
     [self.session addOutput:self.imageOutput];
 
-    self.previewLayer.orientation = AVCaptureVideoOrientationLandscapeRight;
-    self.imageOutputConnection.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
+    self.previewLayer.orientation = AVCaptureVideoOrientationPortrait;
+    self.imageOutputConnection.videoOrientation = AVCaptureVideoOrientationPortrait;
     
     [self.session startRunning];
 }

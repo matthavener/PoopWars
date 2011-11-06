@@ -18,6 +18,7 @@ typedef void(^WebInterfacePutCb)(NSString *);
 - (void)uploadImage:(UIImage*)image withCallback:(WebInterfacePutCb)response;
 - (void)requestImagesWithResponse:(WebInterfaceGetCb)response;
 - (void)requestLocation;
+- (void)voteImage:(PoopImage*)image with:(NSString*)upOrDown;
 
 @property (nonatomic, retain) CLLocation *lastLocation;
 

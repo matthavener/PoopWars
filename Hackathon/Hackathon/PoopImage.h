@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSString *imageName;
 @property (nonatomic, assign) NSInteger rating;
 @property (nonatomic, retain) CLLocation *location;
+@property (nonatomic, assign) NSInteger rowId;
 
 - (void)requestImageOnCompletion:(void (^)(void))cb;
 @end
